@@ -526,8 +526,13 @@
 
   async function completeCourse(courseId, xpReward, courseTitle) {
     if (!currentUser) {
-      if (window.showToast) window.showToast('Please log in first.', 'error');
-      return;
+      const { data: { session } } = await window.supabaseClient.auth.getSession();
+      if (session && session.user) {
+        currentUser = session.user;
+      } else {
+        if (window.showToast) window.showToast('Please log in first.', 'error');
+        return;
+      }
     }
 
     const completedCourses = userProgress.completed_courses || [];

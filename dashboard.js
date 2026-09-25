@@ -134,7 +134,15 @@
   if (expenseForm) {
     expenseForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (!currentUser) { showToast('Please log in first.', 'error'); return; }
+      if (!currentUser) {
+        const { data: { session } } = await window.supabaseClient.auth.getSession();
+        if (session && session.user) {
+          currentUser = session.user;
+        } else {
+          if (window.showToast) window.showToast('Please log in first.', 'error');
+          return;
+        }
+      }
 
       const btn = expenseForm.querySelector('button[type="submit"]');
       const amount = parseFloat(expenseForm.querySelector('[name="exp-amount"]').value);
@@ -208,7 +216,15 @@
   if (nwForm) {
     nwForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (!currentUser) { showToast('Please log in first.', 'error'); return; }
+      if (!currentUser) {
+        const { data: { session } } = await window.supabaseClient.auth.getSession();
+        if (session && session.user) {
+          currentUser = session.user;
+        } else {
+          if (window.showToast) window.showToast('Please log in first.', 'error');
+          return;
+        }
+      }
 
       const btn = nwForm.querySelector('button[type="submit"]');
       const totalAssets = parseFloat(nwForm.querySelector('[name="nw-assets"]').value) || 0;
@@ -295,7 +311,15 @@
   if (portfolioForm) {
     portfolioForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (!currentUser) { showToast('Please log in first.', 'error'); return; }
+      if (!currentUser) {
+        const { data: { session } } = await window.supabaseClient.auth.getSession();
+        if (session && session.user) {
+          currentUser = session.user;
+        } else {
+          if (window.showToast) window.showToast('Please log in first.', 'error');
+          return;
+        }
+      }
 
       const btn = portfolioForm.querySelector('button[type="submit"]');
       const totalValue = parseFloat(portfolioForm.querySelector('[name="pf-total"]').value) || 0;

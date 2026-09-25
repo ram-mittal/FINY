@@ -45,8 +45,13 @@
       if (!query) return;
 
       if (!currentUser) {
-        if (window.showToast) window.showToast('Please log in first.', 'error');
-        return;
+        const { data: { session } } = await window.supabaseClient.auth.getSession();
+        if (session && session.user) {
+          currentUser = session.user;
+        } else {
+          if (window.showToast) window.showToast('Please log in first.', 'error');
+          return;
+        }
       }
 
       // 1. Append User Bubble
