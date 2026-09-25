@@ -1,6 +1,6 @@
 :root{
   --ink:#171022;
-  --violet:#6f2fe0;
+  --violet:#5b6a7a;
   --violet2:#8b5cf6;
   --paper:#f5f5f3;
   --cream:#f3ece0;
@@ -1976,7 +1976,7 @@ img{max-width:100%}
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-gold), #e8c985);
+  background: linear-gradient(135deg, var(--accent-sky), #b3e0f2);
   color: var(--bg-dark);
   border: none;
   cursor: pointer;

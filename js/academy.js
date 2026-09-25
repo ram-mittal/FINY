@@ -301,8 +301,8 @@
 
   // Category colors
   const CATEGORY_COLORS = {
-    'Entrepreneurship': '#6f2fe0',
-    'Finance': '#c5a059',
+    'Entrepreneurship': '#5b6a7a',
+    'Finance': '#87ceeb',
     'Investing': '#4CAF50',
     'Business Skills': '#2196F3',
     'Government Schemes': '#FF9800'
@@ -349,7 +349,7 @@
       let rank = 'Novice';
       let rankColor = 'rgba(255,255,255,0.5)';
       if (xp >= 1500) { rank = 'Legend'; rankColor = '#FF9800'; }
-      else if (xp >= 1000) { rank = 'Master'; rankColor = '#c5a059'; }
+      else if (xp >= 1000) { rank = 'Master'; rankColor = '#87ceeb'; }
       else if (xp >= 500) { rank = 'Scholar'; rankColor = '#4CAF50'; }
       else if (xp >= 150) { rank = 'Apprentice'; rankColor = '#2196F3'; }
       
@@ -375,9 +375,9 @@
             class="academy-filter-btn ${filterCategory === cat ? 'active' : ''}" 
             data-category="${cat}"
             style="
-              background: ${filterCategory === cat ? 'var(--accent-purple)' : 'rgba(255,255,255,0.05)'};
+              background: ${filterCategory === cat ? 'var(--accent-muted)' : 'rgba(255,255,255,0.05)'};
               color: ${filterCategory === cat ? '#fff' : 'rgba(255,255,255,0.6)'};
-              border: 1px solid ${filterCategory === cat ? 'var(--accent-purple)' : 'rgba(255,255,255,0.1)'};
+              border: 1px solid ${filterCategory === cat ? 'var(--accent-muted)' : 'rgba(255,255,255,0.1)'};
               padding: 6px 14px;
               border-radius: 20px;
               cursor: pointer;
@@ -396,7 +396,7 @@
 
     const courseCards = courses.map(course => {
       const isCompleted = completedCourses.includes(course.id);
-      const catColor = CATEGORY_COLORS[course.category] || '#6f2fe0';
+      const catColor = CATEGORY_COLORS[course.category] || '#5b6a7a';
       
       return `
         <div class="app-card" style="display:flex; flex-direction:column; justify-content:space-between; ${isCompleted ? 'border-color: rgba(76,175,80,0.2);' : ''}">
@@ -411,7 +411,7 @@
                 font-size: 9px;
                 letter-spacing: 1px;
               " class="mono">${course.category.toUpperCase()}</span>
-              <span class="mono" style="color:var(--accent-gold); font-size:10px;">+${course.xp_reward} XP</span>
+              <span class="mono" style="color:var(--accent-sky); font-size:10px;">+${course.xp_reward} XP</span>
             </div>
             
             <!-- Title & Description -->
@@ -435,7 +435,7 @@
                 border-radius:8px;
                 overflow:hidden;
                 cursor:pointer;
-                background: linear-gradient(135deg, rgba(111,47,224,0.3), rgba(197,160,89,0.2));
+                background: linear-gradient(135deg, rgba(135,206,235,0.1), rgba(197,160,89,0.2));
                 margin-bottom:5px;
               "
             >

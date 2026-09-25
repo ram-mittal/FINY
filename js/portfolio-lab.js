@@ -47,12 +47,12 @@
               <strong style="font-size:12px;">${window.formatINR(totalInvested)}</strong>
             </div>
             <div style="text-align:center;">
-              <div style="height:120px; width:40px; background:var(--accent-purple); margin:0 auto;"></div>
+              <div style="height:120px; width:40px; background:var(--accent-muted); margin:0 auto;"></div>
               <span class="mono" style="font-size:10px; display:block; margin-top:5px;">RETURNS</span>
               <strong style="font-size:12px;">${window.formatINR(wealthGained)}</strong>
             </div>
             <div style="text-align:center;">
-              <div style="height:150px; width:40px; background:var(--accent-gold); margin:0 auto;"></div>
+              <div style="height:150px; width:40px; background:var(--accent-sky); margin:0 auto;"></div>
               <span class="mono" style="font-size:10px; display:block; margin-top:5px;">TOTAL</span>
               <strong style="font-size:12px;">${window.formatINR(futureValue)}</strong>
             </div>

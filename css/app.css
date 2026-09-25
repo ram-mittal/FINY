@@ -2,14 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..600,100&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@100..800&display=swap');
 
 :root {
-  --bg-dark: #0a060e;
-  --bg-darker: #050308;
+  --bg-dark: #1f2833;
+  --bg-darker: #0b0c10;
   --text-light: #f3ece0;
   --text-muted: rgba(243, 236, 224, 0.6);
-  --accent-gold: #c5a059;
-  --accent-gold-glow: rgba(197, 160, 89, 0.2);
-  --accent-purple: #6f2fe0;
-  --accent-purple-glow: rgba(111, 47, 224, 0.2);
+  --accent-sky: #87ceeb;
+  --accent-sky-glow: rgba(135, 206, 235, 0.2);
+  --accent-muted: #5b6a7a;
+  --accent-muted-glow: rgba(111, 47, 224, 0.2);
   --font-serif: 'Fraunces', serif;
   --font-sans: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -27,8 +27,8 @@ body.app-body {
   overflow: hidden;
   background-color: var(--bg-darker);
   background-image: 
-    radial-gradient(circle at 100% 0%, rgba(111,47,224,0.15) 0%, transparent 40%),
-    radial-gradient(circle at 0% 100%, rgba(197,160,89,0.1) 0%, transparent 40%),
+    radial-gradient(circle at 100% 0%, rgba(135,206,235,0.05) 0%, transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(135,206,235,0.1) 0%, transparent 40%),
     radial-gradient(circle at 50% 50%, rgba(26,8,19,0.4) 0%, transparent 100%);
   color: var(--text-light);
   font-family: var(--font-sans);
@@ -69,12 +69,12 @@ body.app-body {
 
 .app-sidebar-header .logo {
   font-family: var(--font-serif);
-  color: var(--accent-gold);
+  color: var(--accent-sky);
   font-size: 32px;
   font-weight: 300;
   margin: 0 0 40px 10px;
   letter-spacing: -0.5px;
-  text-shadow: 0 0 20px var(--accent-gold-glow);
+  text-shadow: 0 0 20px var(--accent-sky-glow);
 }
 
 .app-sidebar-nav {
@@ -110,7 +110,7 @@ body.app-body {
   top: 0;
   height: 100%;
   width: 3px;
-  background: var(--accent-purple);
+  background: var(--accent-muted);
   transform: scaleY(0);
   transition: transform 0.3s ease;
   transform-origin: bottom;
@@ -124,7 +124,7 @@ body.app-body {
 
 .app-nav-link.active {
   color: var(--text-light);
-  background: linear-gradient(90deg, rgba(111,47,224,0.15) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(135,206,235,0.05) 0%, transparent 100%);
   border: 1px solid rgba(111,47,224,0.1);
 }
 
@@ -238,7 +238,7 @@ body.app-body {
   position: relative;
   z-index: 2;
   margin: 0;
-  color: var(--accent-gold);
+  color: var(--accent-sky);
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 2px;
@@ -300,7 +300,7 @@ body.app-body {
 .app-card:hover {
   transform: translateY(-5px);
   border-color: var(--glass-border-hover);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(111, 47, 224, 0.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(135, 206, 235, 0.05);
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -328,13 +328,13 @@ body.app-body {
 }
 
 .dash-input:focus {
-  border-color: var(--accent-purple) !important;
-  box-shadow: 0 0 0 3px var(--accent-purple-glow) !important;
+  border-color: var(--accent-muted) !important;
+  box-shadow: 0 0 0 3px var(--accent-muted-glow) !important;
   outline: none !important;
 }
 
 .dash-submit {
-  background: linear-gradient(135deg, var(--accent-purple), #4c1d95) !important;
+  background: linear-gradient(135deg, var(--accent-muted), #4c1d95) !important;
   color: white !important;
   border: none !important;
   padding: 14px 24px !important;
@@ -343,7 +343,7 @@ body.app-body {
   letter-spacing: 1px !important;
   cursor: pointer !important;
   transition: all 0.3s ease !important;
-  box-shadow: 0 4px 15px var(--accent-purple-glow) !important;
+  box-shadow: 0 4px 15px var(--accent-muted-glow) !important;
 }
 
 .dash-submit:hover {
@@ -375,7 +375,8 @@ body.app-body {
          p a g e - b r e a k - i n s i d e :   a v o i d ; 
      } 
  } 
-  
+ 
+ 
  
  / *   C u s t o m i z i n g   G o o g l e   T r a n s l a t e   W i d g e t   * / 
  . g o o g - t e - b a n n e r - f r a m e . s k i p t r a n s l a t e   { 
@@ -423,7 +424,8 @@ body.app-body {
  . g o o g - t e - g a d g e t   s p a n   { 
      d i s p l a y :   n o n e   ! i m p o r t a n t ; 
  } 
-  
+ 
+ 
  /* =======================
    RESPONSIVE DESIGN (MOBILE)
 ======================= */

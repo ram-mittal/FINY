@@ -45,7 +45,7 @@
       if (incomeInput && data.monthly_income) incomeInput.value = data.monthly_income;
       if (goalInput && data.primary_goal) goalInput.value = data.primary_goal;
       
-      dnaDisplay.innerHTML = `<p class="dash-empty mono" style="color:var(--accent-gold)">DNA Profile Active: ${data.risk_tolerance.toUpperCase()} risk</p>`;
+      dnaDisplay.innerHTML = `<p class="dash-empty mono" style="color:var(--accent-sky)">DNA Profile Active: ${data.risk_tolerance.toUpperCase()} risk</p>`;
     }
   }
 

@@ -114,24 +114,24 @@
 
     let avatar = '';
     if (sender === 'ai') {
-      avatar = `<div style="width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg, var(--accent-gold), #e6c887); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-serif); color:var(--bg-darker); font-weight:600; font-size:18px; box-shadow:0 4px 15px var(--accent-gold-glow);">A</div>`;
+      avatar = `<div style="width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg, var(--accent-sky), #b3e0f2); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-serif); color:var(--bg-darker); font-weight:600; font-size:18px; box-shadow:0 4px 15px var(--accent-sky-glow);">A</div>`;
     } else {
       avatar = `<div style="width:36px; height:36px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-sans); color:var(--text-light); font-weight:500; font-size:16px;">U</div>`;
     }
 
     // Format basic bold markdown for demo
-    const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--accent-gold); font-weight:500;">$1</strong>');
+    const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--accent-sky); font-weight:500;">$1</strong>');
 
     let citationsHTML = '';
     if (citations.length > 0) {
       citationsHTML = `<div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:11px; opacity:0.8;">
-        <span class="mono" style="display:block; margin-bottom:6px; color:var(--accent-gold);">EVIDENCE / SOURCES</span>
+        <span class="mono" style="display:block; margin-bottom:6px; color:var(--accent-sky);">EVIDENCE / SOURCES</span>
         ${citations.map(c => `<div style="margin-bottom:4px; display:flex; align-items:center; gap:6px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> ${c.source} <span style="opacity:0.5;">(${c.path})</span></div>`).join('')}
       </div>`;
     }
 
-    const bubbleColor = sender === 'ai' ? 'rgba(255,255,255,0.04)' : 'linear-gradient(135deg, rgba(111, 47, 224, 0.15), rgba(111, 47, 224, 0.05))';
-    const borderStyle = sender === 'ai' ? '1px solid var(--glass-border)' : '1px solid rgba(111,47,224,0.2)';
+    const bubbleColor = sender === 'ai' ? 'rgba(255,255,255,0.04)' : 'linear-gradient(135deg, rgba(135, 206, 235, 0.1), rgba(135, 206, 235, 0.05))';
+    const borderStyle = sender === 'ai' ? '1px solid var(--glass-border)' : '1px solid rgba(135,206,235,0.15)';
     const borderRadius = sender === 'ai' ? '4px 16px 16px 16px' : '16px 4px 16px 16px';
 
     const bubble = `

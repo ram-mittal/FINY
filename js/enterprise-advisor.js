@@ -479,11 +479,11 @@
     if (error || !data || data.length === 0) return;
     
     historyContainer.innerHTML = `
-      <h3 style="color:var(--accent-gold); font-family:var(--font-serif); font-size:20px; font-weight:normal; margin-bottom:15px;">Previous Reports</h3>
+      <h3 style="color:var(--accent-sky); font-family:var(--font-serif); font-size:20px; font-weight:normal; margin-bottom:15px;">Previous Reports</h3>
       <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap:15px;">
         ${data.map(r => `
           <div class="app-card" style="cursor:default;">
-            <span class="mono" style="font-size:9px; color:var(--accent-gold);">${r.industry?.toUpperCase() || 'N/A'}</span>
+            <span class="mono" style="font-size:9px; color:var(--accent-sky);">${r.industry?.toUpperCase() || 'N/A'}</span>
             <h4 style="margin:5px 0; font-size:14px;">${r.business_name || 'Untitled'}</h4>
             <span style="font-size:12px; opacity:0.5;">${new Date(r.created_at).toLocaleDateString()}</span>
             <div style="margin-top:8px; font-size:13px;">
@@ -644,8 +644,8 @@
           
           <!-- ═══ HEADER: Executive Summary ═══ -->
           <div style="background: linear-gradient(145deg, rgba(255,255,255,0.04), transparent); border: 1px solid rgba(255,255,255,0.06); padding: 35px; border-radius: 14px; position:relative; overflow:hidden;">
-            <div style="position:absolute; top:-30px; right:-30px; width:120px; height:120px; background:var(--accent-purple); filter:blur(70px); opacity:0.25; border-radius:50%;"></div>
-            <div style="position:absolute; bottom:-20px; left:-20px; width:80px; height:80px; background:var(--accent-gold); filter:blur(50px); opacity:0.15; border-radius:50%;"></div>
+            <div style="position:absolute; top:-30px; right:-30px; width:120px; height:120px; background:var(--accent-muted); filter:blur(70px); opacity:0.25; border-radius:50%;"></div>
+            <div style="position:absolute; bottom:-20px; left:-20px; width:80px; height:80px; background:var(--accent-sky); filter:blur(50px); opacity:0.15; border-radius:50%;"></div>
             
             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:25px;">
               <div>
@@ -660,53 +660,53 @@
             
             <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:12px;">
               <div style="background:rgba(0,0,0,0.25); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.03);">
-                <span class="mono" style="font-size:8px; color:var(--accent-gold); display:block; margin-bottom:4px;">PROJECT COST</span>
+                <span class="mono" style="font-size:8px; color:var(--accent-sky); display:block; margin-bottom:4px;">PROJECT COST</span>
                 <strong style="font-size:15px;">${formatCurrency(projectCost)}</strong>
               </div>
               <div style="background:rgba(0,0,0,0.25); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.03);">
-                <span class="mono" style="font-size:8px; color:var(--accent-gold); display:block; margin-bottom:4px;">YOUR MARGIN (10%)</span>
+                <span class="mono" style="font-size:8px; color:var(--accent-sky); display:block; margin-bottom:4px;">YOUR MARGIN (10%)</span>
                 <strong style="font-size:15px;">${formatCurrency(marginCapital)}</strong>
               </div>
               <div style="background:rgba(0,0,0,0.25); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.03);">
-                <span class="mono" style="font-size:8px; color:var(--accent-gold); display:block; margin-bottom:4px;">LOAN (90%)</span>
+                <span class="mono" style="font-size:8px; color:var(--accent-sky); display:block; margin-bottom:4px;">LOAN (90%)</span>
                 <strong style="font-size:15px;">${formatCurrency(effectiveLoan)}</strong>
               </div>
               <div style="background:rgba(0,0,0,0.25); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.03);">
-                <span class="mono" style="font-size:8px; color:var(--accent-gold); display:block; margin-bottom:4px;">MONTHLY EMI</span>
+                <span class="mono" style="font-size:8px; color:var(--accent-sky); display:block; margin-bottom:4px;">MONTHLY EMI</span>
                 <strong style="font-size:15px;">${formatCurrency(monthlyEMI)}</strong>
               </div>
               <div style="background:rgba(0,0,0,0.25); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.03);">
-                <span class="mono" style="font-size:8px; color:var(--accent-gold); display:block; margin-bottom:4px;">DSCR</span>
+                <span class="mono" style="font-size:8px; color:var(--accent-sky); display:block; margin-bottom:4px;">DSCR</span>
                 <strong style="font-size:15px; color:${dscr >= 1.25 ? '#4CAF50' : dscr >= 1.0 ? '#FFC107' : '#F44336'};">${dscr.toFixed(2)}x</strong>
               </div>
             </div>
           </div>
 
           <!-- ═══ MODULE 2: SCHEME AUTO-SELECTION ═══ -->
-          <div style="background: linear-gradient(135deg, rgba(111,47,224,0.06), transparent); border: 1px solid rgba(111,47,224,0.15); padding: 25px; border-radius: 14px;">
+          <div style="background: linear-gradient(135deg, rgba(111,47,224,0.06), transparent); border: 1px solid rgba(135,206,235,0.05); padding: 25px; border-radius: 14px;">
             <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px;">
-              <span style="background:var(--accent-purple); color:white; padding:4px 12px; border-radius:4px; font-size:11px;" class="mono">AUTO-SELECTED</span>
+              <span style="background:var(--accent-muted); color:white; padding:4px 12px; border-radius:4px; font-size:11px;" class="mono">AUTO-SELECTED</span>
               <h4 style="margin:0; color:var(--text-light); font-family:var(--font-serif); font-size:22px; font-weight:normal;">${selectedScheme.name}</h4>
             </div>
             <p style="font-size:13px; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:20px;">${selectedScheme.description}</p>
             <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;">
               <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px; text-align:center;">
-                <span class="mono" style="font-size:8px; color:var(--accent-purple); display:block; margin-bottom:4px;">INTEREST RATE</span>
+                <span class="mono" style="font-size:8px; color:var(--accent-muted); display:block; margin-bottom:4px;">INTEREST RATE</span>
                 <strong style="font-size:18px;">${selectedScheme.interestRate}%</strong>
                 <span style="display:block; font-size:10px; opacity:0.4;">per annum</span>
               </div>
               <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px; text-align:center;">
-                <span class="mono" style="font-size:8px; color:var(--accent-purple); display:block; margin-bottom:4px;">TENURE</span>
+                <span class="mono" style="font-size:8px; color:var(--accent-muted); display:block; margin-bottom:4px;">TENURE</span>
                 <strong style="font-size:18px;">${selectedScheme.tenureYears} Yrs</strong>
                 <span style="display:block; font-size:10px; opacity:0.4;">${selectedScheme.tenureYears * 12} months</span>
               </div>
               <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px; text-align:center;">
-                <span class="mono" style="font-size:8px; color:var(--accent-purple); display:block; margin-bottom:4px;">MORATORIUM</span>
+                <span class="mono" style="font-size:8px; color:var(--accent-muted); display:block; margin-bottom:4px;">MORATORIUM</span>
                 <strong style="font-size:18px;">${selectedScheme.moratoriumMonths} Mo</strong>
                 <span style="display:block; font-size:10px; opacity:0.4;">no payment</span>
               </div>
               <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px; text-align:center;">
-                <span class="mono" style="font-size:8px; color:var(--accent-purple); display:block; margin-bottom:4px;">TOTAL INTEREST</span>
+                <span class="mono" style="font-size:8px; color:var(--accent-muted); display:block; margin-bottom:4px;">TOTAL INTEREST</span>
                 <strong style="font-size:18px;">${formatCurrency(repayment.emi * repayment.repaymentMonths - effectiveLoan)}</strong>
                 <span style="display:block; font-size:10px; opacity:0.4;">over tenure</span>
               </div>
@@ -721,11 +721,11 @@
                 Within a <strong style="color:var(--text-light);">${industry.marketReach.radiusKm} km radius</strong> of ${location}, the estimated addressable consumer base is <strong style="color:var(--text-light);">${Math.round(consumerBase).toLocaleString()} households</strong> with an estimated daily footfall potential of <strong style="color:var(--text-light);">${dailyFootfall} customers</strong>.
               </p>
               <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px; margin-bottom:10px;">
-                <span class="mono" style="font-size:9px; color:var(--accent-gold);">DEMAND ELASTICITY</span>
+                <span class="mono" style="font-size:9px; color:var(--accent-sky);">DEMAND ELASTICITY</span>
                 <p style="margin:5px 0 0 0; font-size:12px; opacity:0.7;">${industry.demandElasticity}</p>
               </div>
               <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px;">
-                <span class="mono" style="font-size:9px; color:var(--accent-gold);">SEASONALITY PATTERN</span>
+                <span class="mono" style="font-size:9px; color:var(--accent-sky);">SEASONALITY PATTERN</span>
                 <p style="margin:5px 0 0 0; font-size:12px; opacity:0.7;">${industry.seasonality}</p>
               </div>
             </div>
@@ -733,15 +733,15 @@
             <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 14px;">
               <h4 style="margin:0 0 15px 0; color:var(--text-light); font-family:var(--font-serif); font-size:20px; font-weight:normal;">Opportunity & Competitor Map</h4>
               <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px; margin-bottom:10px;">
-                <span class="mono" style="font-size:9px; color:var(--accent-gold);">COMPETITOR DENSITY</span>
+                <span class="mono" style="font-size:9px; color:var(--accent-sky);">COMPETITOR DENSITY</span>
                 <p style="margin:5px 0 0 0; font-size:12px; opacity:0.7;">~${industry.competitors.avgDensityPer10km} similar businesses per 10km radius.</p>
               </div>
               <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px; margin-bottom:10px;">
-                <span class="mono" style="font-size:9px; color:var(--accent-gold);">COMPETITOR VULNERABILITY</span>
+                <span class="mono" style="font-size:9px; color:var(--accent-sky);">COMPETITOR VULNERABILITY</span>
                 <p style="margin:5px 0 0 0; font-size:12px; opacity:0.7;">${industry.competitors.vulnerability}</p>
               </div>
               <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px;">
-                <span class="mono" style="font-size:9px; color:var(--accent-gold);">PRODUCT MARKET VALUE</span>
+                <span class="mono" style="font-size:9px; color:var(--accent-sky);">PRODUCT MARKET VALUE</span>
                 <p style="margin:5px 0 0 0; font-size:12px; opacity:0.7;">Average local price: <strong style="color:var(--text-light);">${formatCurrency(industry.pricing.avgLocal)}</strong> per ${industry.pricing.unitName}. Range: ${formatCurrency(industry.pricing.minPrice)} — ${formatCurrency(industry.pricing.maxPrice)}.</p>
               </div>
             </div>
@@ -799,19 +799,19 @@
               <h4 style="margin:0 0 15px 0; color:var(--text-light); font-family:var(--font-serif); font-size:20px; font-weight:normal;">Revenue Projections</h4>
               <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:10px;">
                 <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px;">
-                  <span class="mono" style="font-size:9px; color:var(--accent-gold);">PROJECTED ANNUAL REVENUE</span>
+                  <span class="mono" style="font-size:9px; color:var(--accent-sky);">PROJECTED ANNUAL REVENUE</span>
                   <strong style="display:block; font-size:14px; margin-top:4px;">${formatCurrency(projectedAnnualRevenue)}</strong>
                 </div>
                 <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px;">
-                  <span class="mono" style="font-size:9px; color:var(--accent-gold);">ANNUAL OPERATING COSTS</span>
+                  <span class="mono" style="font-size:9px; color:var(--accent-sky);">ANNUAL OPERATING COSTS</span>
                   <strong style="display:block; font-size:14px; margin-top:4px;">${formatCurrency(projectedAnnualCosts)}</strong>
                 </div>
                 <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px;">
-                  <span class="mono" style="font-size:9px; color:var(--accent-gold);">NET OPERATING INCOME</span>
+                  <span class="mono" style="font-size:9px; color:var(--accent-sky);">NET OPERATING INCOME</span>
                   <strong style="display:block; font-size:14px; margin-top:4px; color:${noi > 0 ? '#4CAF50' : '#F44336'};">${formatCurrency(noi)}</strong>
                 </div>
                 <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px;">
-                  <span class="mono" style="font-size:9px; color:var(--accent-gold);">WORKING CAPITAL NEEDED</span>
+                  <span class="mono" style="font-size:9px; color:var(--accent-sky);">WORKING CAPITAL NEEDED</span>
                   <strong style="display:block; font-size:14px; margin-top:4px;">${formatCurrency(workingCapital)}</strong>
                 </div>
               </div>
@@ -844,14 +844,14 @@
           <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 14px;">
             <h4 style="margin:0 0 15px 0; color:var(--text-light); font-family:var(--font-serif); font-size:20px; font-weight:normal;">Eligible Government Schemes</h4>
             
-            <div style="background:linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,215,0,0.02)); border:1px solid var(--accent-gold); padding:20px; border-radius:12px; margin-bottom:20px;">
+            <div style="background:linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,215,0,0.02)); border:1px solid var(--accent-sky); padding:20px; border-radius:12px; margin-bottom:20px;">
               <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
                 <div>
-                  <div class="mono" style="color:var(--accent-gold); font-size:10px; letter-spacing:1px; margin-bottom:4px;">PRIMARY SCHEME MATCH</div>
+                  <div class="mono" style="color:var(--accent-sky); font-size:10px; letter-spacing:1px; margin-bottom:4px;">PRIMARY SCHEME MATCH</div>
                   <strong style="font-size:18px; color:var(--text-light); display:block;">${selectedScheme.name}</strong>
                 </div>
                 <div style="text-align:right;">
-                  <div style="font-size:18px; font-weight:bold; color:var(--accent-gold);">${selectedScheme.interestRate}% <span style="font-size:12px; font-weight:normal; opacity:0.7;">p.a.</span></div>
+                  <div style="font-size:18px; font-weight:bold; color:var(--accent-sky);">${selectedScheme.interestRate}% <span style="font-size:12px; font-weight:normal; opacity:0.7;">p.a.</span></div>
                 </div>
               </div>
               <p style="font-size:13px; line-height:1.6; opacity:0.8; margin:0 0 15px 0;">
@@ -902,7 +902,7 @@
           margin:       0.5,
           filename:     'arthX_Feasibility_Report.pdf',
           image:        { type: 'jpeg', quality: 0.98 },
-          html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#0a060e' },
+          html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#1f2833' },
           jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
         html2pdf().set(opt).from(reportElement).save();
