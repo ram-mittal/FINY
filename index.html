@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 
   <!-- preload the images that gate their sections, so the ₹ reveal and the
        cinematic sequence never show a blank frame while assets are fetching.
@@ -108,7 +108,7 @@
               </text>
             </g>
           </svg>
-          <img class="brand-mark-icon" src="logo.png" alt="" aria-hidden="true">
+          <img class="brand-mark-icon" src="assets/images/logo.png" alt="" aria-hidden="true">
         </span>
         <strong>arthX</strong>
       </a>
@@ -248,7 +248,7 @@
 
         <!-- This complete layer pans. Hotspots + lines stay attached to the image. -->
         <div class="hero-canvas" id="heroCanvas">
-          <img src="background.png"
+          <img src="assets/images/background.png"
                class="hero-image"
                id="heroImage"
                alt="Bombay Stock Exchange tower rising above palm trees — arthX Image 01">
@@ -396,7 +396,7 @@
       <div class="image-two-pin">
 
         <div class="image-two-canvas" id="imageTwoCanvas">
-          <img src="background2.png"
+          <img src="assets/images/background2.png"
                class="image-two-image"
                id="imageTwoImage"
                alt="Mumbai coastline and skyline — arthX Image 02">
@@ -433,15 +433,15 @@
 
         <div class="learn-visuals">
           <div class="img-placeholder learn-image-01" data-reveal>
-            <img id="learn-image-01" src="images/learn-01-house.jpg" alt="Learn visual 01 — financial foundations">
+            <img id="learn-image-01" src="assets/images/learn-01-house.jpg" alt="Learn visual 01 — financial foundations">
             <span class="mono placeholder-label">LEARN — 01</span>
           </div>
           <div class="img-placeholder learn-image-02" data-reveal data-reveal-delay="1">
-            <img id="learn-image-02" src="images/learn-02-analysis.jpg" alt="Learn visual 02 — financial analysis">
+            <img id="learn-image-02" src="assets/images/learn-02-analysis.jpg" alt="Learn visual 02 — financial analysis">
             <span class="mono placeholder-label">LEARN — 02</span>
           </div>
           <div class="img-placeholder learn-image-03" data-reveal data-reveal-delay="2">
-            <img id="learn-image-03" src="images/learn-03-planning.jpg" alt="Learn visual 03 — financial planning">
+            <img id="learn-image-03" src="assets/images/learn-03-planning.jpg" alt="Learn visual 03 — financial planning">
             <span class="mono placeholder-label">LEARN — 03</span>
           </div>
         </div>
@@ -470,11 +470,11 @@
 
           <div class="build-visuals">
             <div class="img-placeholder build-image-01" data-reveal>
-              <img id="build-image-01" src="images/build-01-farmer.jpg" alt="Build visual 01 — real-world income">
+              <img id="build-image-01" src="assets/images/build-01-farmer.jpg" alt="Build visual 01 — real-world income">
               <span class="mono placeholder-label">BUILD — 01</span>
             </div>
             <div class="img-placeholder build-image-02" data-reveal data-reveal-delay="1">
-              <img id="build-image-02" src="images/build-02-kirana.jpg" alt="Build visual 02 — small business entrepreneurship">
+              <img id="build-image-02" src="assets/images/build-02-kirana.jpg" alt="Build visual 02 — small business entrepreneurship">
               <span class="mono placeholder-label">BUILD — 02</span>
             </div>
           </div>
@@ -490,7 +490,7 @@
             <div class="portfolio-bar" style="--pct:5" data-reveal data-reveal-delay="4"><i></i><span class="mono">Global <b>5%</b></span></div>
           </div>
           <div class="img-placeholder build-image-03" data-reveal data-reveal-delay="2">
-            <img id="build-image-03" src="images/build-03-tailor.jpg" alt="Build visual 03 — livelihood and financial independence">
+            <img id="build-image-03" src="assets/images/build-03-tailor.jpg" alt="Build visual 03 — livelihood and financial independence">
             <span class="mono placeholder-label">BUILD — 03</span>
           </div>
         </div>
@@ -565,7 +565,7 @@
       <div class="enterprise-pin" id="enterprisePin">
 
         <div class="enterprise-image" id="enterpriseImage">
-          <img src="background3.png" alt="Diamond Club — institutional business district, arthX Image 03">
+          <img src="assets/images/background3.png" alt="Diamond Club — institutional business district, arthX Image 03">
         </div>
         <div class="enterprise-shade"></div>
 
@@ -781,10 +781,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="script.js"></script>
-  <script src="supabase.js"></script>
-  <script src="auth.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
 
-  <script src="content.js"></script>
+  <script src="js/content.js"></script>
 </body>
 </html>
