@@ -289,7 +289,13 @@
       return;
     }
 
-    const alloc = data.allocations || data.allocation || {};
+    const alloc = {
+      Equity: data.equity || 0,
+      Debt: data.debt || 0,
+      Gold: data.gold || 0,
+      Cash: data.cash || 0,
+      Global: data.global || 0
+    };
     const total = parseFloat(data.total_value) || 0;
 
     portfolioDisplay.innerHTML = `
@@ -337,8 +343,6 @@
 
       setLoading(btn, true);
 
-      const allocations = { Equity: equity, Debt: debt, Gold: gold, Cash: cash, Global: global };
-
       const { data: existing } = await supabaseClient
         .from('portfolios')
         .select('id')
@@ -348,14 +352,22 @@
       let error;
       if (existing) {
         ({ error } = await supabaseClient.from('portfolios').update({
-          allocations,
+          equity,
+          debt,
+          gold,
+          cash,
+          global,
           total_value: totalValue,
           updated_at: new Date().toISOString()
         }).eq('id', existing.id));
       } else {
         ({ error } = await supabaseClient.from('portfolios').insert({
           user_id: currentUser.id,
-          allocations,
+          equity,
+          debt,
+          gold,
+          cash,
+          global,
           total_value: totalValue
         }));
       }
