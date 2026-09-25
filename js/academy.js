@@ -415,7 +415,7 @@
             </div>
             
             <!-- Title & Description -->
-            <h3 style="margin:0 0 8px 0; font-family:var(--font-serif); font-size:20px; color:var(--text-main); font-weight:normal;">${course.title}</h3>
+            <h3 style="margin:0 0 8px 0; font-family:var(--font-serif); font-size:20px; color:var(--text-light); font-weight:normal;">${course.title}</h3>
             <p style="font-size:13px; line-height:1.6; color:rgba(255,255,255,0.6); margin-bottom:12px;">${course.description}</p>
             
             <!-- Duration & Difficulty -->
@@ -448,7 +448,7 @@
               >
               <div style="
                 position:absolute; inset:0;
-                background:rgba(0,0,0,0.05);
+                background:rgba(0,0,0,0.3);
                 display:flex; align-items:center; justify-content:center;
                 transition: background 0.3s ease;
               ">

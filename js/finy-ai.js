@@ -114,9 +114,9 @@
 
     let avatar = '';
     if (sender === 'ai') {
-      avatar = `<div style="width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg, var(--accent-sky), #b3e0f2); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-serif); color:var(--bg-main); font-weight:600; font-size:18px; box-shadow:0 4px 15px var(--accent-sky-glow);">A</div>`;
+      avatar = `<div style="width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg, var(--accent-sky), #b3e0f2); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-serif); color:var(--bg-darker); font-weight:600; font-size:18px; box-shadow:0 4px 15px var(--accent-sky-glow);">A</div>`;
     } else {
-      avatar = `<div style="width:36px; height:36px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-sans); color:var(--text-main); font-weight:500; font-size:16px;">U</div>`;
+      avatar = `<div style="width:36px; height:36px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-sans); color:var(--text-light); font-weight:500; font-size:16px;">U</div>`;
     }
 
     // Format basic bold markdown for demo
@@ -135,7 +135,7 @@
     const borderRadius = sender === 'ai' ? '4px 16px 16px 16px' : '16px 4px 16px 16px';
 
     const bubble = `
-      <div style="background:${bubbleColor}; border:${borderStyle}; padding:18px 24px; border-radius:${borderRadius}; font-size:14px; line-height:1.6; color:var(--text-main); box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+      <div style="background:${bubbleColor}; border:${borderStyle}; padding:18px 24px; border-radius:${borderRadius}; font-size:14px; line-height:1.6; color:var(--text-light); box-shadow:0 10px 30px rgba(0,0,0,0.1);">
         ${formattedText}
         ${citationsHTML}
       </div>
