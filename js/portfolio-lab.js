@@ -39,22 +39,28 @@
 
       if (labChart && window.formatINR) {
         const wealthGained = futureValue - totalInvested;
+        // Calculate relative heights (max 150px)
+        const maxVal = Math.max(futureValue, totalInvested, wealthGained, 1);
+        const hInvested = Math.max((totalInvested / maxVal) * 150, 5);
+        const hReturns = Math.max((wealthGained / maxVal) * 150, 5);
+        const hTotal = 150;
+
         labChart.innerHTML = `
-          <div style="display:flex; justify-content:space-around; align-items:flex-end; height:150px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:10px;">
-            <div style="text-align:center;">
-              <div style="height:50px; width:40px; background:var(--accent-silver); margin:0 auto;"></div>
-              <span class="mono" style="font-size:10px; display:block; margin-top:5px;">INVESTED</span>
-              <strong style="font-size:12px;">${window.formatINR(totalInvested)}</strong>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; height:150px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:10px; gap:10px;">
+            <div style="text-align:center; flex:1; min-width:0;">
+              <div style="height:${hInvested}px; width:100%; max-width:40px; background:rgba(255,255,255,0.4); margin:0 auto; border-radius:4px 4px 0 0;"></div>
+              <span class="mono" style="font-size:10px; display:block; margin-top:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">INVESTED</span>
+              <strong style="font-size:12px; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${window.formatINR(totalInvested)}">${window.formatINR(totalInvested)}</strong>
             </div>
-            <div style="text-align:center;">
-              <div style="height:120px; width:40px; background:var(--accent-muted); margin:0 auto;"></div>
-              <span class="mono" style="font-size:10px; display:block; margin-top:5px;">RETURNS</span>
-              <strong style="font-size:12px;">${window.formatINR(wealthGained)}</strong>
+            <div style="text-align:center; flex:1; min-width:0;">
+              <div style="height:${hReturns}px; width:100%; max-width:40px; background:var(--accent-muted); margin:0 auto; border-radius:4px 4px 0 0;"></div>
+              <span class="mono" style="font-size:10px; display:block; margin-top:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">RETURNS</span>
+              <strong style="font-size:12px; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${window.formatINR(wealthGained)}">${window.formatINR(wealthGained)}</strong>
             </div>
-            <div style="text-align:center;">
-              <div style="height:150px; width:40px; background:var(--accent-sky); margin:0 auto;"></div>
-              <span class="mono" style="font-size:10px; display:block; margin-top:5px;">TOTAL</span>
-              <strong style="font-size:12px;">${window.formatINR(futureValue)}</strong>
+            <div style="text-align:center; flex:1; min-width:0;">
+              <div style="height:${hTotal}px; width:100%; max-width:40px; background:var(--accent-sky); margin:0 auto; border-radius:4px 4px 0 0;"></div>
+              <span class="mono" style="font-size:10px; display:block; margin-top:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">TOTAL</span>
+              <strong style="font-size:12px; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${window.formatINR(futureValue)}">${window.formatINR(futureValue)}</strong>
             </div>
           </div>
         `;

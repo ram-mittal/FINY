@@ -48,17 +48,6 @@
       youtubeUrl: 'https://www.youtube.com/watch?v=Fqch5OrUPvA'
     },
     {
-      id: 'ent-003',
-      title: 'Rural Entrepreneurship in India',
-      description: 'Discover how rural entrepreneurs are building profitable businesses. Case studies of successful village-level enterprises.',
-      category: 'Entrepreneurship',
-      difficulty: 'Beginner',
-      xp_reward: 50,
-      duration: '18 min',
-      youtubeId: 'htgr3pvBr-I',
-      youtubeUrl: 'https://www.youtube.com/watch?v=htgr3pvBr-I'
-    },
-    {
       id: 'ent-004',
       title: 'MUDRA Loan Explained — Complete Guide',
       description: 'Everything you need to know about the MUDRA Yojana loan scheme — Shishu, Kishore, and Tarun categories, eligibility, and application process.',

@@ -53,6 +53,11 @@ body.app-body {
   background: rgba(255, 255, 255, 0.2);
 }
 
+select option {
+  background-color: var(--bg-darker);
+  color: var(--accent-sky);
+}
+
 /* Sidebar Styling */
 .app-sidebar {
   width: 260px;
