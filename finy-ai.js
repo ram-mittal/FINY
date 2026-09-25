@@ -31,6 +31,13 @@
   });
 
   if (chatForm) {
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        chatForm.dispatchEvent(new Event('submit'));
+      }
+    });
+
     chatForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
@@ -92,9 +99,8 @@
   function appendMessage(text, sender, citations = []) {
     const wrapper = document.createElement('div');
     wrapper.style.display = 'flex';
-    wrapper.style.gap = '15px';
-    wrapper.style.maxWidth = '80%';
-    wrapper.style.marginBottom = '20px';
+    wrapper.style.gap = '16px';
+    wrapper.style.maxWidth = '85%';
     
     if (sender === 'user') {
       wrapper.style.alignSelf = 'flex-end';
@@ -103,33 +109,34 @@
 
     let avatar = '';
     if (sender === 'ai') {
-      avatar = `<div style="width:30px; height:30px; border-radius:50%; background:var(--accent-gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-serif); color:var(--bg-dark); font-weight:bold;">A</div>`;
+      avatar = `<div style="width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg, var(--accent-gold), #e6c887); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-serif); color:var(--bg-darker); font-weight:600; font-size:18px; box-shadow:0 4px 15px var(--accent-gold-glow);">A</div>`;
     } else {
-      avatar = `<div style="width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-serif); color:var(--text-light); font-weight:bold;">U</div>`;
+      avatar = `<div style="width:36px; height:36px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:var(--font-sans); color:var(--text-light); font-weight:500; font-size:16px;">U</div>`;
     }
 
     // Format basic bold markdown for demo
-    const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--accent-gold); font-weight:500;">$1</strong>');
 
     let citationsHTML = '';
     if (citations.length > 0) {
-      citationsHTML = `<div style="margin-top:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1); font-size:11px; opacity:0.7;">
-        <span class="mono" style="display:block; margin-bottom:5px; color:var(--accent-silver);">EVIDENCE / SOURCES</span>
-        ${citations.map(c => `<div style="margin-bottom:3px;">• ${c.source} <span style="opacity:0.5;">(${c.path})</span></div>`).join('')}
+      citationsHTML = `<div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:11px; opacity:0.8;">
+        <span class="mono" style="display:block; margin-bottom:6px; color:var(--accent-gold);">EVIDENCE / SOURCES</span>
+        ${citations.map(c => `<div style="margin-bottom:4px; display:flex; align-items:center; gap:6px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> ${c.source} <span style="opacity:0.5;">(${c.path})</span></div>`).join('')}
       </div>`;
     }
 
-    const bubbleColor = sender === 'ai' ? 'rgba(255,255,255,0.05)' : 'rgba(139, 92, 246, 0.2)';
-    const borderRadius = sender === 'ai' ? '0 8px 8px 8px' : '8px 0 8px 8px';
+    const bubbleColor = sender === 'ai' ? 'rgba(255,255,255,0.04)' : 'linear-gradient(135deg, rgba(111, 47, 224, 0.15), rgba(111, 47, 224, 0.05))';
+    const borderStyle = sender === 'ai' ? '1px solid var(--glass-border)' : '1px solid rgba(111,47,224,0.2)';
+    const borderRadius = sender === 'ai' ? '4px 16px 16px 16px' : '16px 4px 16px 16px';
 
     const bubble = `
-      <div style="background:${bubbleColor}; padding:15px; border-radius:${borderRadius}; font-size:14px; line-height:1.5;">
+      <div style="background:${bubbleColor}; border:${borderStyle}; padding:18px 24px; border-radius:${borderRadius}; font-size:14px; line-height:1.6; color:var(--text-light); box-shadow:0 10px 30px rgba(0,0,0,0.1);">
         ${formattedText}
         ${citationsHTML}
       </div>
     `;
 
-    wrapper.innerHTML = sender === 'ai' ? avatar + bubble : avatar + bubble;
+    wrapper.innerHTML = avatar + bubble;
     chatHistory.appendChild(wrapper);
     
     // Auto scroll to bottom

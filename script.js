@@ -20,12 +20,12 @@ gsap.ticker.lagSmoothing(0);
 ============================================================ */
 const brandOrbit = document.querySelector('.brand-orbit');
 if(brandOrbit){
-  gsap.set(brandOrbit, {transformOrigin:'50px 50px'});
   gsap.to(brandOrbit, {
-    rotation:360,
-    duration:7.5,
-    repeat:-1,
-    ease:'none'
+    rotation: 360,
+    duration: 7.5,
+    repeat: -1,
+    ease: 'none',
+    svgOrigin: '50 50'
   });
 }
 
@@ -59,8 +59,9 @@ const loadFill = document.getElementById('loadFill');
 document.documentElement.style.overflow = 'hidden';
 document.body.style.overflow = 'hidden';
 
-// Reset load bar
+// Reset load bar and hide Rupee mask initially
 gsap.set(loadFill, { xPercent: -100 });
+gsap.set('#maskRupeeText', { scale: 0, transformOrigin: '50% 50%' });
 
 // Animate load bar
 gsap.to(loadFill, {
@@ -68,18 +69,26 @@ gsap.to(loadFill, {
   duration: 1.8,
   ease: 'power2.inOut',
   onComplete() {
+    // Hide the inner text content of the preloader before the mask zooms out
+    gsap.to('.door-preloader', { opacity: 0, duration: 0.4 });
+    
     gsap.timeline({
       onComplete() {
         if(preloader) preloader.style.display = 'none';
-        if(masterPreloader) masterPreloader.style.display = 'none';
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
         ScrollTrigger.refresh(true);
       }
     })
-    .to('#maskRupeeText', { scale: 150, transformOrigin: 'center center', duration: 1.6, ease: 'power3.inOut' })
-    .to(preloader, { opacity: 0, duration: 0.5, ease: 'power2.out' }, "-=0.4")
-    .to(masterPreloader, { yPercent: -100, duration: 1.2, ease: 'power3.inOut' }, "-=1.2");
+    // Zoom the Rupee mask perfectly from its center
+    .to('#maskRupeeText', { 
+      scale: 150, 
+      transformOrigin: '50% 50%', 
+      duration: 1.6, 
+      ease: 'power3.inOut' 
+    })
+    // Fade out the maroon mask layer as it finishes zooming
+    .to(preloader, { opacity: 0, duration: 0.8, ease: 'power2.out' }, "-=0.8");
   }
 });
 
@@ -205,8 +214,8 @@ ScrollTrigger.create({
   onUpdate(self){
     heroPan.apply(self.progress);
 
-    // 5 copy stages distributed through the first ~72% of the image journey
-    const copyProgress = Math.min(self.progress / .72, .9999);
+    // 5 copy stages distributed through the first ~95% of the image journey
+    const copyProgress = Math.min(self.progress / .95, .9999);
     const idx = Math.min(heroSteps.length-1, Math.floor(copyProgress * heroSteps.length));
     heroSteps.forEach((el,i)=>el.classList.toggle('active',i===idx));
   }
@@ -241,24 +250,24 @@ const hotspotText = document.getElementById('hotspotText');
 const hotspotButtons = [...document.querySelectorAll('.hero-hotspot')];
 
 hotspotButtons.forEach(btn=>{
-  btn.addEventListener('click',()=>{
+  // Show card on hover
+  btn.addEventListener('mouseenter', () => {
     const id = btn.dataset.hotspot;
-    const alreadyActive = btn.classList.contains('active');
-
-    if(alreadyActive){
-      btn.classList.remove('active');
-      hotspotCard.classList.remove('visible');
-      return;
-    }
-
     const d = hotspotData[id];
-    hotspotButtons.forEach(b=>b.classList.remove('active'));
+    
+    hotspotButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
     hotspotKicker.textContent = d.kicker;
     hotspotTitle.textContent = d.title;
     hotspotText.textContent = d.text;
     hotspotCard.classList.add('visible');
+  });
+
+  // Hide card when hover ends
+  btn.addEventListener('mouseleave', () => {
+    btn.classList.remove('active');
+    hotspotCard.classList.remove('visible');
   });
 });
 
