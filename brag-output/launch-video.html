@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>arthX — Launch Video</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --bg: #030712;
+      --sky: #87ceeb;
+      --gold: #c5a059;
+      --cream: #f3ece0;
+      --mono: 'JetBrains Mono', monospace;
+      --serif: 'Fraunces', serif;
+      --sans: 'Space Grotesk', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--sans);
+      overflow: hidden;
+      width: 1920px;
+      height: 1080px;
+    }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: opacity 1.2s cubic-bezier(0.25,1,0.5,1), transform 1.2s cubic-bezier(0.25,1,0.5,1);
+      pointer-events: none;
+    }
+    .scene.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+    .scene.exit {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    /* ── Scene 1: Intro / Logo ── */
+    .s1-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 40%, rgba(135,206,235,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(197,160,89,0.1) 0%, transparent 50%),
+        var(--bg);
+    }
+    .s1-rupee {
+      font-family: var(--serif);
+      font-size: 320px;
+      font-weight: 300;
+      color: transparent;
+      background: linear-gradient(135deg, var(--sky), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      opacity: 0;
+      animation: rupeeIn 2s 0.5s forwards;
+      line-height: 1;
+    }
+    @keyframes rupeeIn {
+      0% { opacity:0; transform:scale(0.3) rotate(-20deg); filter:blur(20px); }
+      60% { opacity:1; transform:scale(1.1) rotate(2deg); filter:blur(0); }
+      100% { opacity:1; transform:scale(1) rotate(0deg); filter:blur(0); }
+    }
+    .s1-logo {
+      font-family: var(--serif);
+      font-size: 96px;
+      font-weight: 300;
+      letter-spacing: -2px;
+      color: var(--sky);
+      text-shadow: 0 0 60px rgba(135,206,235,0.4);
+      opacity: 0;
+      animation: fadeUp 1.2s 1.8s forwards;
+    }
+    .s1-tagline {
+      font-family: var(--mono);
+      font-size: 18px;
+      letter-spacing: 6px;
+      color: rgba(243,236,224,0.5);
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeUp 1s 2.4s forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(30px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── Scene 2: Problem ── */
+    .s2-content {
+      text-align: center;
+      max-width: 1200px;
+    }
+    .s2-stat {
+      font-family: var(--serif);
+      font-size: 180px;
+      font-weight: 300;
+      background: linear-gradient(135deg, #ff6b6b, #ff9f43);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+      line-height: 1;
+    }
+    .s2-text {
+      font-size: 36px;
+      font-weight: 300;
+      color: rgba(243,236,224,0.7);
+      margin-top: 30px;
+      opacity: 0;
+      animation: fadeUp 1s 0.8s forwards;
+      line-height: 1.5;
+    }
+    .s2-sub {
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: rgba(255,107,107,0.6);
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeUp 1s 1.2s forwards;
+    }
+
+    /* ── Scene 3: Solution ── */
+    .s3-content {
+      text-align: center;
+      max-width: 1400px;
+    }
+    .s3-kicker {
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--sky);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .s3-heading {
+      font-family: var(--serif);
+      font-size: 100px;
+      font-weight: 300;
+      line-height: 1.15;
+      margin-top: 30px;
+      opacity: 0;
+      animation: fadeUp 1s 0.6s forwards;
+    }
+    .s3-heading em {
+      font-style: italic;
+      color: var(--sky);
+    }
+    .s3-desc {
+      font-size: 28px;
+      font-weight: 300;
+      color: rgba(243,236,224,0.6);
+      margin-top: 30px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 1s 1s forwards;
+    }
+
+    /* ── Scene 4: Features Grid ── */
+    .s4-content {
+      width: 100%;
+      padding: 0 120px;
+    }
+    .s4-kicker {
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--gold);
+      margin-bottom: 50px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .s4-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .s4-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 50px 40px;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .s4-card-num {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--sky);
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+    .s4-card h3 {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 15px;
+    }
+    .s4-card p {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(243,236,224,0.5);
+      line-height: 1.6;
+    }
+
+    /* ── Scene 5: Dashboard Showcase ── */
+    .s5-content {
+      text-align: center;
+      max-width: 1600px;
+      width: 100%;
+      padding: 0 80px;
+    }
+    .s5-kicker {
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--sky);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .s5-heading {
+      font-family: var(--serif);
+      font-size: 72px;
+      font-weight: 300;
+      margin: 20px 0 50px;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s forwards;
+    }
+    .s5-modules {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .s5-mod {
+      background: rgba(135,206,235,0.08);
+      border: 1px solid rgba(135,206,235,0.15);
+      border-radius: 12px;
+      padding: 18px 32px;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: var(--sky);
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+    }
+
+    /* ── Scene 6: AI Assistant ── */
+    .s6-content {
+      text-align: center;
+      max-width: 1200px;
+    }
+    .s6-ai-glow {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(135,206,235,0.3), transparent 70%);
+      margin: 0 auto 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: pulseGlow 2s 0.3s forwards;
+    }
+    @keyframes pulseGlow {
+      0% { opacity:0; transform:scale(0.5); }
+      50% { opacity:1; transform:scale(1.1); }
+      100% { opacity:1; transform:scale(1); }
+    }
+    .s6-ai-icon {
+      font-size: 80px;
+      color: var(--sky);
+    }
+    .s6-heading {
+      font-family: var(--serif);
+      font-size: 80px;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 1s 0.6s forwards;
+    }
+    .s6-heading em { font-style: italic; color: var(--sky); }
+    .s6-chat {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 30px 50px;
+      font-size: 22px;
+      font-weight: 300;
+      color: rgba(243,236,224,0.6);
+      font-style: italic;
+      opacity: 0;
+      animation: fadeUp 1s 1s forwards;
+    }
+
+    /* ── Scene 7: Multilingual ── */
+    .s7-content { text-align: center; }
+    .s7-heading {
+      font-family: var(--serif);
+      font-size: 72px;
+      font-weight: 300;
+      margin-bottom: 60px;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+    .s7-langs {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1200px;
+    }
+    .s7-lang {
+      font-family: var(--mono);
+      font-size: 16px;
+      letter-spacing: 3px;
+      padding: 15px 30px;
+      border: 1px solid rgba(135,206,235,0.15);
+      border-radius: 40px;
+      color: var(--sky);
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    /* ── Scene 8: XP / Gamification ── */
+    .s8-content { text-align: center; }
+    .s8-kicker {
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--gold);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .s8-heading {
+      font-family: var(--serif);
+      font-size: 72px;
+      font-weight: 300;
+      margin: 20px 0 50px;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s forwards;
+    }
+    .s8-heading em { font-style: italic; color: var(--sky); }
+    .s8-ranks {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .s8-rank {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .s8-rank-bar {
+      width: 80px;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(180deg, var(--sky), rgba(135,206,235,0.2));
+    }
+    .s8-rank-name {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: var(--cream);
+    }
+    .s8-rank-xp {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: rgba(243,236,224,0.4);
+    }
+
+    /* ── Scene 9: Government Schemes ── */
+    .s9-content { text-align: center; max-width: 1300px; }
+    .s9-kicker {
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: #FF9800;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .s9-heading {
+      font-family: var(--serif);
+      font-size: 72px;
+      font-weight: 300;
+      margin: 20px 0 50px;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s forwards;
+    }
+    .s9-heading em { font-style: italic; color: #FF9800; }
+    .s9-schemes {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .s9-scheme {
+      background: rgba(255,152,0,0.06);
+      border: 1px solid rgba(255,152,0,0.15);
+      border-radius: 16px;
+      padding: 30px 40px;
+      min-width: 280px;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .s9-scheme h4 {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: #FF9800;
+    }
+    .s9-scheme p {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(243,236,224,0.5);
+      line-height: 1.5;
+    }
+
+    /* ── Scene 10: CTA / Finale ── */
+    .s10-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(135,206,235,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 50%, rgba(197,160,89,0.1) 0%, transparent 50%),
+        var(--bg);
+    }
+    .s10-content { text-align: center; position: relative; z-index: 1; }
+    .s10-heading {
+      font-family: var(--serif);
+      font-size: 110px;
+      font-weight: 300;
+      line-height: 1.15;
+      opacity: 0;
+      animation: fadeUp 1.2s 0.3s forwards;
+    }
+    .s10-heading em { font-style: italic; color: var(--sky); }
+    .s10-sub {
+      font-family: var(--mono);
+      font-size: 20px;
+      letter-spacing: 8px;
+      color: var(--gold);
+      margin-top: 40px;
+      opacity: 0;
+      animation: fadeUp 1s 1s forwards;
+    }
+
+    /* ── Progress bar ── */
+    .progress-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sky), var(--gold));
+      z-index: 999;
+      transition: width 0.3s linear;
+    }
+
+    /* ── Scene counter ── */
+    .scene-counter {
+      position: fixed;
+      bottom: 30px;
+      right: 40px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: rgba(243,236,224,0.3);
+      z-index: 999;
+    }
+
+    /* ── Particles ── */
+    .particle {
+      position: fixed;
+      width: 2px;
+      height: 2px;
+      background: var(--sky);
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Pause button ── */
+    .pause-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 30px;
+      z-index: 1000;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+    .pause-btn:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.25);
+      transform: scale(1.1);
+    }
+    .pause-btn svg {
+      fill: rgba(243,236,224,0.5);
+      transition: fill 0.3s ease;
+    }
+    .pause-btn:hover svg { fill: rgba(243,236,224,0.9); }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient particles -->
+  <div id="particles"></div>
+
+  <!-- Progress -->
+  <div class="progress-bar" id="progress"></div>
+  <div class="scene-counter" id="counter">01 / 10</div>
+  <button class="pause-btn" id="pauseBtn" aria-label="Pause">
+    <svg id="pauseIcon" width="16" height="16" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+    <svg id="playIcon" width="16" height="16" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+
+  <!-- SCENE 1: Intro -->
+  <div class="scene active" id="scene1">
+    <div class="s1-bg"></div>
+    <div class="s1-rupee">₹</div>
+    <div class="s1-logo">arthX</div>
+    <div class="s1-tagline">YOUR FINANCIAL WORLD</div>
+  </div>
+
+  <!-- SCENE 2: Problem -->
+  <div class="scene" id="scene2">
+    <div class="s2-content">
+      <div class="s2-stat">76%</div>
+      <div class="s2-text">of Indians lack basic<br>financial literacy</div>
+      <div class="s2-sub">SOURCE: NATIONAL CENTRE FOR FINANCIAL EDUCATION, 2024</div>
+    </div>
+  </div>
+
+  <!-- SCENE 3: Solution -->
+  <div class="scene" id="scene3">
+    <div class="s3-content">
+      <div class="s3-kicker">INTRODUCING</div>
+      <h1 class="s3-heading">Don't just earn.<br><em>Build</em> what comes next.</h1>
+      <p class="s3-desc">arthX is your financial companion — learn, manage, invest, and grow. Built for India's next generation of wealth builders.</p>
+    </div>
+  </div>
+
+  <!-- SCENE 4: Features -->
+  <div class="scene" id="scene4">
+    <div class="s4-content">
+      <div class="s4-kicker">EVERYTHING YOU NEED</div>
+      <div class="s4-grid">
+        <div class="s4-card" id="card1">
+          <div class="s4-card-num">01</div>
+          <h3>Money Manager</h3>
+          <p>Track expenses, calculate net worth, and understand where every rupee goes.</p>
+        </div>
+        <div class="s4-card" id="card2">
+          <div class="s4-card-num">02</div>
+          <h3>Portfolio Builder</h3>
+          <p>Build and simulate investment portfolios with real compound growth projections.</p>
+        </div>
+        <div class="s4-card" id="card3">
+          <div class="s4-card-num">03</div>
+          <h3>arthX Academy</h3>
+          <p>Curated video courses on finance, entrepreneurship, and government schemes. Earn XP as you learn.</p>
+        </div>
+        <div class="s4-card" id="card4">
+          <div class="s4-card-num">04</div>
+          <h3>Rural Enterprise Advisor</h3>
+          <p>Business assessment, market analysis, and scheme calculators for rural entrepreneurs.</p>
+        </div>
+        <div class="s4-card" id="card5">
+          <div class="s4-card-num">05</div>
+          <h3>Tax & Safety Centre</h3>
+          <p>Understand taxes, protect against fraud, and stay financially safe.</p>
+        </div>
+        <div class="s4-card" id="card6">
+          <div class="s4-card-num">06</div>
+          <h3>Financial DNA</h3>
+          <p>Discover your financial personality and get personalized guidance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 5: Dashboard -->
+  <div class="scene" id="scene5">
+    <div class="s5-content">
+      <div class="s5-kicker">ONE PREMIUM DASHBOARD</div>
+      <h2 class="s5-heading">10 Modules. One Place.</h2>
+      <div class="s5-modules">
+        <div class="s5-mod" id="mod1">RURAL ENTERPRISE</div>
+        <div class="s5-mod" id="mod2">MONEY MANAGER</div>
+        <div class="s5-mod" id="mod3">NET WORTH</div>
+        <div class="s5-mod" id="mod4">PORTFOLIO</div>
+        <div class="s5-mod" id="mod5">PORTFOLIO LAB</div>
+        <div class="s5-mod" id="mod6">FINANCIAL DNA</div>
+        <div class="s5-mod" id="mod7">ACADEMY</div>
+        <div class="s5-mod" id="mod8">COMMUNITY</div>
+        <div class="s5-mod" id="mod9">TAX CENTRE</div>
+        <div class="s5-mod" id="mod10">SAFETY CENTRE</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 6: AI -->
+  <div class="scene" id="scene6">
+    <div class="s6-content">
+      <div class="s6-ai-glow">
+        <span class="s6-ai-icon">✦</span>
+      </div>
+      <h2 class="s6-heading">Powered by<br><em>arthX AI</em></h2>
+      <div class="s6-chat">"What happens if I increase my equity allocation to 60%?"</div>
+    </div>
+  </div>
+
+  <!-- SCENE 7: Multilingual -->
+  <div class="scene" id="scene7">
+    <div class="s7-content">
+      <h2 class="s7-heading">Built for all of India.</h2>
+      <div class="s7-langs">
+        <div class="s7-lang" id="lang1">ENGLISH</div>
+        <div class="s7-lang" id="lang2">हिंदी</div>
+        <div class="s7-lang" id="lang3">मराठी</div>
+        <div class="s7-lang" id="lang4">বাংলা</div>
+        <div class="s7-lang" id="lang5">తెలుగు</div>
+        <div class="s7-lang" id="lang6">தமிழ்</div>
+        <div class="s7-lang" id="lang7">ગુજરાતી</div>
+        <div class="s7-lang" id="lang8">ಕನ್ನಡ</div>
+        <div class="s7-lang" id="lang9">മലയാളം</div>
+        <div class="s7-lang" id="lang10">ਪੰਜਾਬੀ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 8: XP / Gamification -->
+  <div class="scene" id="scene8">
+    <div class="s8-content">
+      <div class="s8-kicker">LEARN & EARN XP</div>
+      <h2 class="s8-heading">Rise through the <em>ranks.</em></h2>
+      <div class="s8-ranks">
+        <div class="s8-rank" id="rank1">
+          <div class="s8-rank-bar" style="height:40px; opacity:0.4;"></div>
+          <span class="s8-rank-name">NOVICE</span>
+          <span class="s8-rank-xp">0 XP</span>
+        </div>
+        <div class="s8-rank" id="rank2">
+          <div class="s8-rank-bar" style="height:70px; opacity:0.55;"></div>
+          <span class="s8-rank-name">APPRENTICE</span>
+          <span class="s8-rank-xp">150 XP</span>
+        </div>
+        <div class="s8-rank" id="rank3">
+          <div class="s8-rank-bar" style="height:100px; opacity:0.7;"></div>
+          <span class="s8-rank-name">SCHOLAR</span>
+          <span class="s8-rank-xp">500 XP</span>
+        </div>
+        <div class="s8-rank" id="rank4">
+          <div class="s8-rank-bar" style="height:140px; opacity:0.85;"></div>
+          <span class="s8-rank-name">MASTER</span>
+          <span class="s8-rank-xp">1000 XP</span>
+        </div>
+        <div class="s8-rank" id="rank5">
+          <div class="s8-rank-bar" style="height:180px; background: linear-gradient(180deg, var(--gold), rgba(197,160,89,0.3));"></div>
+          <span class="s8-rank-name" style="color:var(--gold);">LEGEND</span>
+          <span class="s8-rank-xp">1500 XP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 9: Government Schemes -->
+  <div class="scene" id="scene9">
+    <div class="s9-content">
+      <div class="s9-kicker">GOVERNMENT SCHEMES</div>
+      <h2 class="s9-heading">Navigate <em>India's</em> opportunities.</h2>
+      <div class="s9-schemes">
+        <div class="s9-scheme" id="scheme1">
+          <h4>MUDRA Yojana</h4>
+          <p>Loans up to ₹10L for micro enterprises — Shishu, Kishore, Tarun categories.</p>
+        </div>
+        <div class="s9-scheme" id="scheme2">
+          <h4>Stand-Up India</h4>
+          <p>₹10L–₹1Cr loans for SC/ST and women entrepreneurs.</p>
+        </div>
+        <div class="s9-scheme" id="scheme3">
+          <h4>PMEGP</h4>
+          <p>Up to 35% subsidy for rural manufacturing businesses.</p>
+        </div>
+        <div class="s9-scheme" id="scheme4">
+          <h4>Kisan Credit Card</h4>
+          <p>Credit for farmers, dairy owners, and fishery entrepreneurs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 10: Finale -->
+  <div class="scene" id="scene10">
+    <div class="s10-bg"></div>
+    <div class="s10-content">
+      <h1 class="s10-heading">Don't just earn.<br><em>Build what comes next.</em></h1>
+      <div class="s10-sub">arthX — FOR INDIA</div>
+    </div>
+  </div>
+
+  <script>
+    // ── Particles ──
+    const particlesEl = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.animationDelay = Math.random() * 5 + 's';
+      p.style.opacity = Math.random() * 0.3;
+      p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+      particlesEl.appendChild(p);
+    }
+
+    // ── Scene timeline — per-scene durations (ms), total ≈ 45s ──
+    const TOTAL_SCENES = 10;
+    const DURATIONS = [5000, 4500, 5000, 5500, 4500, 4500, 4500, 4000, 4000, 4500];
+    let currentScene = 1;
+    let paused = false;
+    let pausedAt = 0;       // elapsed ms when paused
+    let sceneTimers = [];   // active timeout IDs
+
+    const progress = document.getElementById('progress');
+    const counter = document.getElementById('counter');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const playIcon = document.getElementById('playIcon');
+    const totalDuration = DURATIONS.reduce((a, b) => a + b, 0);
+    let startTime = Date.now();
+
+    // Progress bar
+    function updateProgress() {
+      if (!paused) {
+        const elapsed = Date.now() - startTime;
+        const pct = Math.min((elapsed / totalDuration) * 100, 100);
+        progress.style.width = pct + '%';
+      }
+      requestAnimationFrame(updateProgress);
+    }
+    requestAnimationFrame(updateProgress);
+
+    function showScene(n) {
+      currentScene = n;
+      document.querySelectorAll('.scene.active').forEach(s => {
+        s.classList.remove('active');
+        s.classList.add('exit');
+      });
+
+      setTimeout(() => {
+        document.querySelectorAll('.scene.exit').forEach(s => s.classList.remove('exit'));
+        const scene = document.getElementById('scene' + n);
+        if (scene) {
+          scene.classList.add('active');
+          counter.textContent = String(n).padStart(2,'0') + ' / ' + String(TOTAL_SCENES).padStart(2,'0');
+          if (n === 4) animateCards();
+          if (n === 5) animateModules();
+          if (n === 7) animateLangs();
+          if (n === 8) animateRanks();
+          if (n === 9) animateSchemes();
+        }
+      }, 600);
+    }
+
+    function animateCards() {
+      for (let i = 1; i <= 6; i++) {
+        setTimeout(() => {
+          const card = document.getElementById('card' + i);
+          if (card) { card.style.transition = 'opacity 0.8s ease, transform 0.8s ease'; card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }
+        }, i * 250);
+      }
+    }
+    function animateModules() {
+      for (let i = 1; i <= 10; i++) {
+        setTimeout(() => {
+          const mod = document.getElementById('mod' + i);
+          if (mod) { mod.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; mod.style.opacity = '1'; mod.style.transform = 'translateY(0) scale(1)'; }
+        }, i * 180);
+      }
+    }
+    function animateLangs() {
+      for (let i = 1; i <= 10; i++) {
+        setTimeout(() => {
+          const lang = document.getElementById('lang' + i);
+          if (lang) { lang.style.transition = 'opacity 0.5s ease, transform 0.5s ease'; lang.style.opacity = '1'; lang.style.transform = 'scale(1)'; }
+        }, i * 200);
+      }
+    }
+    function animateRanks() {
+      for (let i = 1; i <= 5; i++) {
+        setTimeout(() => {
+          const rank = document.getElementById('rank' + i);
+          if (rank) { rank.style.transition = 'opacity 0.7s ease, transform 0.7s ease'; rank.style.opacity = '1'; rank.style.transform = 'translateY(0)'; }
+        }, i * 300);
+      }
+    }
+    function animateSchemes() {
+      for (let i = 1; i <= 4; i++) {
+        setTimeout(() => {
+          const scheme = document.getElementById('scheme' + i);
+          if (scheme) { scheme.style.transition = 'opacity 0.7s ease, transform 0.7s ease'; scheme.style.opacity = '1'; scheme.style.transform = 'translateY(0)'; }
+        }, i * 350);
+      }
+    }
+
+    // Schedule all scene transitions
+    function scheduleScenes(offsetMs) {
+      sceneTimers.forEach(id => clearTimeout(id));
+      sceneTimers = [];
+      let cumulative = 0;
+      for (let i = 0; i < TOTAL_SCENES - 1; i++) {
+        cumulative += DURATIONS[i];
+        const remaining = cumulative - offsetMs;
+        if (remaining > 0) {
+          const sceneNum = i + 2;
+          const id = setTimeout(() => showScene(sceneNum), remaining);
+          sceneTimers.push(id);
+        }
+      }
+    }
+
+    // Initial schedule
+    scheduleScenes(0);
+
+    // Pause / Resume
+    pauseBtn.addEventListener('click', () => {
+      if (!paused) {
+        paused = true;
+        pausedAt = Date.now() - startTime;
+        sceneTimers.forEach(id => clearTimeout(id));
+        sceneTimers = [];
+        pauseIcon.style.display = 'none';
+        playIcon.style.display = 'block';
+      } else {
+        paused = false;
+        startTime = Date.now() - pausedAt;
+        scheduleScenes(pausedAt);
+        pauseIcon.style.display = 'block';
+        playIcon.style.display = 'none';
+      }
+    });
+
+    // Spacebar shortcut
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') { e.preventDefault(); pauseBtn.click(); }
+    });
+  </script>
+</body>
+</html>
